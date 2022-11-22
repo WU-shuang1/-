@@ -4,7 +4,12 @@
 
 int main()
 {
-    printf("hello world!\n");
+    printf("asdasfafs\n");
+    printf("asdasfafs\n");
+    printf("asdasfafs\n");
+    printf("asdasfafs\n");
+    printf("asdasfafs\n");
+    printf("asdasfafs\n");
     while(1)
 	Sleep(1);
     return 0;
