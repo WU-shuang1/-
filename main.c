@@ -8,8 +8,7 @@ int main()
     printf("asdasfafs\n");
     printf("asdasfafs\n");
     printf("asdasfafs\n");
-    printf("asdasfafs\n");
-    printf("asdasfafs\n");
+    printf("asdasfafsa\n");
     while(1)
 	Sleep(1);
     return 0;
