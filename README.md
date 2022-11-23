@@ -108,8 +108,7 @@ import os;
 [哔哩哔哩](https://www.bilibili.com "点击进入B站")简称B站大学
 
 
-! [图片](https://github.com/WU-shuang1/test/blob/master/img-storage/%E5%9B%BE%E7%89%87.jpg "图片")
-
+![图片](.\\img-storage\\图片.jpg "图片")
 
 
 
