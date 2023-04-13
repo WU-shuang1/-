@@ -47,17 +47,22 @@ set showmatch
 set hlsearch
 
 "自动补全括号
-inoremap ( ()<ESC>i
-inoremap [ []<ESC>i
-inoremap { {}<ESC>i
-inoremap ' ''<ESC>i
-inoremap " ""<ESC>i
+"inoremap ( ()<ESC>i
+"inoremap [ []<ESC>i
+"inoremap { {}<ESC>i
+"inoremap ' ''<ESC>i
+"inoremap " ""<ESC>i
 
-
+"leader键修改
+let mapleader = ","
 
 imap <C-b> <ESC>:Autoformat<CR>:w<CR>
 nmap <C-b> <ESC>:w<CR>
 nmap <C-a> :q<CR>
+
+"翻页
+nmap <F3> :bp<CR>
+nmap <F4> :bn<CR>
 
 "取消光标闪烁
 set gcr=a:block-blinkon0
@@ -84,22 +89,22 @@ if has("autocmd")
 endif
 
 " Open and close all the three plugins on the same time
-nmap <F8>   :TrinityToggleAll<CR> :set mouse=a<CR> :TrinityToggleSourceExplorer<CR>
+"nmap <F8>   :TrinityToggleAll<CR> :set mouse=a<CR> :TrinityToggleSourceExplorer<CR>
 
 " Open and close the srcexpl.vim separately
-nmap <F9>   :TrinityToggleSourceExplorer<CR>
+"nmap <F9>   :TrinityToggleSourceExplorer<CR>
 
 " Open and close the taglist.vim separately
-nmap <F10>  :TrinityToggleTagList<CR>
+"nmap <F10>  :TrinityToggleTagList<CR>
 
 " Open and close the NERD_tree.vim separately
-nmap <F11>  :TrinityToggleNERDTree<CR>
+"nmap <F11>  :TrinityToggleNERDTree<CR>
 nmap <F7>  :set mouse=v<CR>
 nmap <F6>  :set mouse=a<CR>
-nmap <c-o> o<ESC>k
-nmap <c-h> i<CR><ESC>k$
-nmap m jjjjj
-nmap , kkkkk
+"nmap <c-o> o<ESC>k
+"nmap <c-h> i<CR><ESC>k$
+"nmap m jjjjj
+"nmap , kkkkk
 "set fdm=syntax
 
 " // The switch of the Source Explorer
@@ -142,8 +147,12 @@ nmap , kkkkk
 
 "插件
 call plug#begin('~/.vim/plugged')
-"Plug 'preservim/nerdtree' |
-"           \ Plug 'Xuyuanp/nerdtree-git-plugin'
+"树形目录
+Plug 'preservim/nerdtree' |
+			\ Plug 'Xuyuanp/nerdtree-git-plugin' |
+			\ Plug 'ryanoasis/vim-devicons'
+
+"状态栏
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -163,7 +172,20 @@ Plug 'ycm-core/YouCompleteMe'
 Plug 'kien/rainbow_parentheses.vim'
 
 "注释插件
+Plug 'scrooloose/nerdcommenter' "
 
+"自动补全括号
+Plug 'jiangmiao/auto-pairs'
+
+"显示函数
+Plug 'vim-scripts/taglist.vim'
+
+
+" 中文文档
+Plug 'yianwillis/vimcdoc'
+
+"树形目录美化
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 call plug#end()
 
@@ -260,3 +282,51 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 "彩色括号end
 
+"树形文件夹
+map <F2> :NERDTreeToggle<CR>
+autocmd VimEnter * NERDTree | wincmd p
+"let g:NERDTreeDirArrows = 1
+"let g:NERDTreeDirArrowExpandable = '+'
+"let g:NERDTreeDirArrowCollapsible = '-'
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+let NERDTreeAutoCenter=1
+
+"set bsdir=buffer
+let g:NERDTreeGlyphReadOnly = "RO"
+let g:NERDTreeNodeDelimiter = "\u00b0"
+let g:NERDTreeWinSize = 30 "设定 NERDTree 视窗大小
+let g:NERDTreeHidden=0     "不显示隐藏文件
+let NERDChristmasTree=1
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"树形文件夹end
+
+"注释插件
+
+"注释end
+
+"显示函数
+map <F5> :TlistToggle<CR>
+let Tlist_Show_One_File = 1		"不同时显示多个文件的tag，只显示当前文件的
+let Tlist_Exit_OnlyWindow = 1	"如果taglist窗口是最后一个窗口，则退出vim
+let Tlist_Use_Right_Window = 1	"在右侧窗口中显示taglist窗口
+let Tlist_Auto_Open=1
+let g:Tlist_WinWidth=30
+
+fun! NoExcitingBuffersLeft()
+	if tabpagenr("$") == 1 && winnr("$") == 2
+		let window1 = bufname(winbufnr(1))
+		let window2 = bufname(winbufnr(2))
+		if (window1 == t:NERDTreeBufName && window2 =="__Tag_List__")
+			quit
+		endif
+	endif
+endfun
+au WinEnter * call NoExcitingBuffersLeft()
+"显示函数end
+
+"树形目录美化
+"let g:webdevicons_enable_nerdtree = 1
+let g:airline_powerline_fonts = 1
+set guifont=BitetreamVeraSansMono_Nerd_Font_Mono_Roman:h12
+"树形目录美化end
