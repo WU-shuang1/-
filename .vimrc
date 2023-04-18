@@ -147,14 +147,14 @@ nmap <F6>  :set mouse=a<CR>
 
 "插件
 call plug#begin('~/.vim/plugged')
+"状态栏
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
 "树形目录
 Plug 'preservim/nerdtree' |
 			\ Plug 'Xuyuanp/nerdtree-git-plugin' |
 			\ Plug 'ryanoasis/vim-devicons'
-
-"状态栏
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 
 "静态代码纠错
 Plug 'scrooloose/syntastic'
@@ -179,7 +179,6 @@ Plug 'jiangmiao/auto-pairs'
 
 "显示函数
 Plug 'vim-scripts/taglist.vim'
-
 
 " 中文文档
 Plug 'yianwillis/vimcdoc'
@@ -295,7 +294,7 @@ let NERDTreeAutoCenter=1
 "set bsdir=buffer
 let g:NERDTreeGlyphReadOnly = "RO"
 let g:NERDTreeNodeDelimiter = "\u00b0"
-let g:NERDTreeWinSize = 30 "设定 NERDTree 视窗大小
+let g:NERDTreeWinSize = 25 "设定 NERDTree 视窗大小
 let g:NERDTreeHidden=0     "不显示隐藏文件
 let NERDChristmasTree=1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -311,7 +310,7 @@ let Tlist_Show_One_File = 1		"不同时显示多个文件的tag，只显示当�
 let Tlist_Exit_OnlyWindow = 1	"如果taglist窗口是最后一个窗口，则退出vim
 let Tlist_Use_Right_Window = 1	"在右侧窗口中显示taglist窗口
 let Tlist_Auto_Open=1
-let g:Tlist_WinWidth=30
+let g:Tlist_WinWidth=25
 
 fun! NoExcitingBuffersLeft()
 	if tabpagenr("$") == 1 && winnr("$") == 2
@@ -326,7 +325,6 @@ au WinEnter * call NoExcitingBuffersLeft()
 "显示函数end
 
 "树形目录美化
-"let g:webdevicons_enable_nerdtree = 1
 let g:airline_powerline_fonts = 1
 set guifont=BitetreamVeraSansMono_Nerd_Font_Mono_Roman:h12
 "树形目录美化end
