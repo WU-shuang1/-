@@ -16,11 +16,5 @@ int main()
 	//}
 	//mediator.SendData((char*)"hello world", sizeof("hello world"),0);
 
-
-	while (1) {
-		cout << "server running..." << endl;
-        sleep(3);
-	}
-
 	return 0;
 }
